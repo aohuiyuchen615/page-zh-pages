@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>雷速官网 · 稳定数据入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: #f3f5f9;
+      color: #1e202a;
+      line-height: 1.55;
+      padding: 24px 20px 48px;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* 顶部导航 */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid #dee2e9;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      color: #11131c;
+    }
+
+    .brand small {
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: #656d7a;
+      margin-left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2d313b;
+      font-size: 0.95rem;
+      font-weight: 450;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s ease;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #3366cc;
+      color: #1f2a44;
+    }
+
+    /* Hero 区 */
+    .hero {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e6ee;
+      padding: 48px 44px 40px;
+      margin-bottom: 36px;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: #0e121c;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #3f4656;
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #eef1f7;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #2a3245;
+      border: 1px solid #d7dde7;
+    }
+
+    /* 核心介绍 卡片列 */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e1e6ef;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
+      padding: 28px 26px;
+      transition: box-shadow 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 550;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #131823;
+    }
+
+    .card p {
+      font-size: 0.94rem;
+      color: #3f4759;
+      margin-bottom: 8px;
+    }
+
+    .card .meta {
+      font-size: 0.85rem;
+      color: #6e778b;
+      border-top: 1px solid #e8ecf4;
+      padding-top: 12px;
+      margin-top: 10px;
+    }
+
+    /* 三个场景模块 */
+    .scenarios {
+      margin: 40px 0 28px;
+    }
+
+    .scenarios h2 {
+      font-size: 1.3rem;
+      font-weight: 540;
+      margin-bottom: 20px;
+      color: #10131e;
+      border-left: 4px solid #3b4d77;
+      padding-left: 14px;
+    }
+
+    .scenario-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .scenario-item {
+      flex: 1 1 200px;
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e0e5ef;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      padding: 26px 24px 22px;
+      min-width: 180px;
+    }
+
+    .scenario-item .icon-badge {
+      display: inline-block;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .scenario-item h4 {
+      font-weight: 550;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: #141a28;
+    }
+
+    .scenario-item p {
+      font-size: 0.9rem;
+      color: #4b556b;
+    }
+
+    /* 常见说明 / FAQ 摘要 */
+    .faq-block {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e2e7f1;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.02);
+      padding: 30px 32px;
+      margin: 36px 0 24px;
+    }
+
+    .faq-block h3 {
+      font-size: 1.1rem;
+      font-weight: 540;
+      margin-bottom: 18px;
+      color: #141b2a;
+    }
+
+    .faq-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #e6ebf5;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item strong {
+      font-weight: 570;
+      color: #1f283d;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .faq-item span {
+      color: #49536b;
+      font-size: 0.9rem;
+    }
+
+    .footnote {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid #dce1ec;
+      font-size: 0.9rem;
+      color: #5a657a;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .footnote a {
+      color: #1f3b6b;
+      text-decoration: none;
+      border-bottom: 1px dotted #7f8aa2;
+    }
+
+    .footnote a:hover {
+      border-bottom-color: #1f3b6b;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      body {
+        padding: 18px 14px 36px;
+      }
+      .hero {
+        padding: 32px 22px;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .scenario-flex {
+        flex-direction: column;
+      }
+      .faq-block {
+        padding: 22px 18px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero {
+        padding: 24px 16px;
+      }
+      .card {
+        padding: 20px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- 导航 -->
+    <nav class="navbar">
+      <div class="brand">
+        ｜ 雷速导航
+        <small>轻量入口</small>
+      </div>
+      <div class="nav-links">
+        <a href="#intro">概述</a>
+        <a href="#scenarios">场景</a>
+        <a href="#faq">说明</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>稳定入口 · 数据服务</h1>
+      <p>
+        <a href="https://ssl-leisu.com" style="color:#1c3c78; text-decoration: none; font-weight: 500; border-bottom:1px solid #bdc6db;">雷速官网</a> 聚焦实时数据分发与结构化内容交付。本站作为基准访问页面，提供场景索引与常见指引，帮助使用者快速建立操作预期。
+      </p>
+      <div class="tagline">基于 HTTPS · 统一资源标识</div>
+    </section>
+
+    <!-- 核心介绍 (两卡片) -->
+    <section class="intro-grid" id="intro">
+      <div class="card">
+        <h3>▩ 资源定位</h3>
+        <p>通过标准化的 URI 设计，减少中间跳转层级。所有内容均托管于 ssl-leisu.com 域下，采用 TLS 加密传输。</p>
+        <div class="meta">连接建立 · 握手延迟 ≤ 180ms ｜ 持续监测</div>
+      </div>
+      <div class="card">
+        <h3>▩ 结构说明</h3>
+        <p>页面按「导航 — 概要 — 场景 — 常见问题」组织，每个分区均可直接引用。如需获取最新接口或数据定义，请参考 <a href="https://ssl-leisu.com" style="color:#1c3c78; border-bottom:1px dotted #8f9bb5; text-decoration:none;">雷速官网</a> 内文档索引。</p>
+        <div class="meta">更新周期按周 ｜ 版本 v2.1</div>
+      </div>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section class="scenarios" id="scenarios">
+      <h2>常用场景模块</h2>
+      <div class="scenario-flex">
+        <div class="scenario-item">
+          <div class="icon-badge">📊</div>
+          <h4>数据面板</h4>
+          <p>实时赛事与统计序列，聚合自多个数据源。支持按联赛、时间、状态筛选。</p>
+        </div>
+        <div class="scenario-item">
+          <div class="icon-badge">🔗</div>
+          <h4>参考链接</h4>
+          <p>各子页面与静态资源均使用相对路径或固定域名，便于集成与调试。</p>
+        </div>
+        <div class="scenario-item">
+          <div class="icon-badge">📋</div>
+          <h4>状态查询</h4>
+          <p>接口可用性、证书有效期、响应耗时等指标汇总页，默认每 30 分钟刷新。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常见说明 / FAQ 摘要 -->
+    <div class="faq-block" id="faq">
+      <h3>常见说明 · 摘要</h3>
+      <div class="faq-item">
+        <strong>○ 如何确认当前访问的是官方源？</strong>
+        <span>浏览器地址栏应显示 https://ssl-leisu.com ，且证书由受信任 CA 签发。本站为介绍页，所有核心链接均指向该域名。</span>
+      </div>
+      <div class="faq-item">
+        <strong>○ 是否需要额外注册或凭证？</strong>
+        <span>基础数据与页面内容公开可访问；部分高级接口可能需要密钥或白名单，详情以 <a href="https://ssl-leisu.com" style="color:#1c3c78; text-decoration:none; border-bottom:1px solid #b0bcd4;">雷速官网</a> 文档为准。</span>
+      </div>
+      <div class="faq-item">
+        <strong>○ 内容缓存与时效</strong>
+        <span>静态资源采用 CDN 边缘缓存，动态数据最大延迟不超过 5 秒。页面底部显示最近同步时间戳。</span>
+      </div>
+      <div class="faq-item" style="border-bottom: none;">
+        <strong>○ 跨域与引用限制</strong>
+        <span>建议通过服务端代理或标准 REST 调用，避免浏览器直接跨域请求敏感接口。</span>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footnote">
+      <span>© 索引页 · 面向信息查阅</span>
+      <span>｜</span>
+      <span>首次部署 2025 · 基于轻量导航</span>
+      <span>｜</span>
+      <a href="https://ssl-leisu.com">雷速官网</a>
+    </div>
+
+  </div>
+</body>
+</html>
